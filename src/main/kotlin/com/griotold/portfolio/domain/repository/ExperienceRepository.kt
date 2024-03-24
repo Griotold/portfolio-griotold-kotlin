@@ -2,8 +2,15 @@ package com.griotold.portfolio.domain.repository
 
 import com.griotold.portfolio.domain.entity.Experience
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Query
+import java.util.*
 
 interface ExperienceRepository : JpaRepository<Experience, Long> {
-    // todo Experience 엔티티는 일대다 관계를 품고 있기 때문에 아래 메소드를 사용하면 성능이 매우 떨어지게 된다.
+    @Query("select e from Experience e left join fetch e.details where e.isActive = :isActive")
     fun findAllByIsActive(isActive: Boolean): List<Experience>
+
+    @Query("select e from Experience e left join fetch e.details where e.id = :id")
+    override fun findById(id: Long): Optional<Experience> {
+        TODO("Not yet implemented")
+    }
 }

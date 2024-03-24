@@ -4,6 +4,7 @@ import com.griotold.portfolio.domain.entity.Experience
 import com.griotold.portfolio.domain.entity.ExperienceDetail
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
@@ -83,5 +84,12 @@ class ExperienceRepositoryTest(
         }
 
         println("---- testFindAllByIsActive 테스트 종료 ----")
+    }
+
+    @DisplayName("오버라이드한 findById 테스트 - fetch join")
+    @Test
+    fun testFindByIdFetchJoin() {
+        val findById = experienceRepository.findById(1L)
+        println(findById.isPresent)
     }
 }
