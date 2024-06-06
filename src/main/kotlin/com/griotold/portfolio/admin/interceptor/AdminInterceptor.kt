@@ -11,6 +11,30 @@ class AdminInterceptor : HandlerInterceptor{
 
     // 컨트롤러에서 오류가 발생하면 실행되지 않는다.
     override fun postHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any, modelAndView: ModelAndView?) {
-
+        val menus = listOf<MenuDTO>(
+            MenuDTO(
+                name = "Index",
+                pages = listOf<PageDTO>(
+                    PageDTO(name = "Introduction", url = "/admin/introduction"),
+                    PageDTO(name = "Link", url = "/admin/link")
+                )
+            ),
+            MenuDTO(
+                name = "Resume",
+                pages = listOf<PageDTO>(
+                    PageDTO(name = "Experience", url = "/admin/experience"),
+                    PageDTO(name = "Achievement", url = "/admin/achievement"),
+                    PageDTO(name = "Skill", url = "/admin/skill"),
+                )
+            ),
+            MenuDTO(
+                name = "Project",
+                pages = listOf<PageDTO>(
+                    PageDTO(name = "Project", url = "/admin/project"),
+                    PageDTO(name = "ProjectSkill", url = "/admin/project/skill")
+                )
+            ),
+        )
+        modelAndView?.model?.put("menus", menus)
     }
 }
