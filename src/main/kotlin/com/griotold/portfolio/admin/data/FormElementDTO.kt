@@ -6,7 +6,7 @@ abstract class FormElementDTO(
     val type: String
 )
 
-class TestFormElementDTO(
+class TextFormElementDTO(
     name: String,
     size: Int
 ) : FormElementDTO(name = name, size = size, type = "text")
